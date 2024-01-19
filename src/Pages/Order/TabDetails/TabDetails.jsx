@@ -57,15 +57,16 @@ const TabDetails = ({ items }) => {
                     modules={[Pagination]}
                     className="mySwiper"
                 >
-                    {arrayOfArrays.map((arrayes, idx) => <SwiperSlide key={idx}>
-                        <div className='grid md:grid-cols-3 gap-10'>
-                            {
-                                arrayes.map(item => <FoodCard key={item._id} item={item}></FoodCard>)
-                            }
-                        </div>
+                    {
+                        arrayOfArrays.map((arrayes, idx) => <SwiperSlide key={idx}>
+                            <div className='grid md:grid-cols-3 gap-10'>
+                                {
+                                    arrayes.map(item => <FoodCard key={item._id} item={item}></FoodCard>)
+                                }
+                            </div>
 
 
-                    </SwiperSlide>)
+                        </SwiperSlide>)
 
                     }
 
