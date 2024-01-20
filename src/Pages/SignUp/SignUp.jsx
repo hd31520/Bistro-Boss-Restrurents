@@ -1,13 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AUthProvider';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const SignUp = () => {
 
     const { createUser, updateUserProfile} = useContext(AuthContext);
+    const [image, setImage] = useState("")
+    const [imgUrl, setImgUrl] = useState('')
     const navigate = useNavigate();
 
 
@@ -26,7 +29,7 @@ const SignUp = () => {
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
-            updateUserProfile(data.name, data.PhotoURL)
+            updateUserProfile(data.name, imgUrl)
             .then( () => {
                 console.log('user profile info updated')
                 reset();
@@ -42,11 +45,39 @@ const SignUp = () => {
             .catch(error => console.log(error))
         })
     }
+   
+    const data = new FormData();
+    data.append('image', image);
 
+    const handleupload = e => {
+        e.preventDefault();
+     
+        fetch('https://api.imgbb.com/1/upload?key=857f63046cf4a04f6c028ae48484389e', {
+            method: "POST",
+            body: data
+        })
+        .then(res => res.json())
+        .then(data => {
+            setImgUrl(data.data.display_url)
+            console.log(data)
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Profile Upload Successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
+        })
+    }
+ 
+    const handleImage = e => {
+        e.preventDefault();
+        const file = e.target.files[0];
+        
+        setImage(file);
+    }
 
-
-
-
+    console.log(imgUrl)
 
     return (
         <>
@@ -70,10 +101,11 @@ const SignUp = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">PhotoURL</span>
+                                    <span className="label-text">Profile Picture</span>
                                 </label>
-                                <input type="text" placeholder="PhotoURL" {...register('PhotoURL', { required: true })} className="input input-bordered" />
+                                <input  type="file" placeholder="PhotoURL" {...register('PhotoURL', { required: true })} name='file' onChange={handleImage} className="input input-bordered h-full w-full" />
                                 {errors.name && < span className='text-red-600'>Thisfield is required</span>}
+                                <button onClick={handleupload} className="btn btn-outline btn-xs mt-2 btn-accent">Upload</button>
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -110,6 +142,7 @@ const SignUp = () => {
                         <p><small>Already have an Account <Link to="/login">Please Login </Link></small></p>
                         </div>
                         </form>
+                       
                     </div>
                 </div>
             </div>
