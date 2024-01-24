@@ -10,6 +10,11 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/DashBoard/Cart/Cart";
+import PrivetRoute from "./PrivetRoute";
+import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers";
+import AddItems from "../Pages/DashBoard/AddItem/AddItems";
+import AdminRoute from "./AdminRoute";
+
 
 
   export const router = createBrowserRouter([
@@ -43,13 +48,24 @@ import Cart from "../Pages/DashBoard/Cart/Cart";
           }
         ]
     },
+
     {
       path: 'dashboard',
-      element: <Dashboard></Dashboard>,
+      element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
       children: [
         {
           path: 'cart',
           element: <Cart></Cart>
+        },
+        // Admin Patch
+        {
+          path: 'allUsers',
+          element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
+
+        },
+        {
+          path: 'addItems',
+          element:<AdminRoute> <AddItems></AddItems></AdminRoute>
         }
       ]
     }
