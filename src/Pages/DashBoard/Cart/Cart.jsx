@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useCart from "../../../Hooks/useCart";
 import { MdDeleteForever } from "react-icons/md";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
     const [cart,refetch] = useCart();
@@ -67,7 +68,10 @@ const handleDelete = (id) => {
             <div className="flex justify-between uppercase md:text-3xl">
                 <h2 > TOTAL ORDERS: {cart.length} </h2>
                 <h2 > TOTAL PRICE:${totalPrice} </h2>
-                <button className="bg-[#D1A054] btn px-6 py-1">PAY</button>
+                {
+                    cart.length >0 ? <Link to='/dashboard/prement'><button disabled={!cart.length} className="bg-[#D1A054] btn px-6 py-1">PAY</button></Link> :
+                    <button disabled={!cart.length} className="bg-[#D1A054] btn px-6 py-1">PAY</button>
+                }
             </div>
             <div>
                 <div className="overflow-x-auto">

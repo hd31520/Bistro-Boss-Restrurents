@@ -33,7 +33,7 @@ const Banner = () => {
         <>
         <Carousel autoPlay interval="3000"  infiniteLoop >
             {
-                images.map(item => <div>
+                images.map((item, idx) => <div key={idx}>
                     <img src={item.image} />
                    
                 </div>)

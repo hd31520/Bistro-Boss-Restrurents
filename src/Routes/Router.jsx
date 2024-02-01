@@ -14,6 +14,12 @@ import PrivetRoute from "./PrivetRoute";
 import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers";
 import AddItems from "../Pages/DashBoard/AddItem/AddItems";
 import AdminRoute from "./AdminRoute";
+import ManageItems from "../Pages/DashBoard/ManageItems/ManageItems";
+import UpdateItem from "../Pages/DashBoard/UpdateItem/UpdateItem";
+import Preement from "../Pages/DashBoard/Prement/Preement";
+import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
+import UserHome from "../Pages/DashBoard/UserHome/UserHome";
+import AdminHOme from "../Pages/DashBoard/AdminHome/AdminHOme";
 
 
 
@@ -54,10 +60,26 @@ import AdminRoute from "./AdminRoute";
       element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
       children: [
         {
+          path: 'userHome',
+          element: <UserHome></UserHome>
+        },
+        {
           path: 'cart',
           element: <Cart></Cart>
         },
+        {
+          path: 'prement',
+          element: <Preement></Preement>
+        },
+        {
+          path: 'paymennthistory',
+          element: <PaymentHistory></PaymentHistory>
+        },
         // Admin Patch
+        {
+          path: 'adminHome',
+          element: <AdminRoute><AdminHOme></AdminHOme></AdminRoute>
+        },
         {
           path: 'allUsers',
           element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
@@ -66,6 +88,16 @@ import AdminRoute from "./AdminRoute";
         {
           path: 'addItems',
           element:<AdminRoute> <AddItems></AddItems></AdminRoute>
+        },
+        {
+          path: 'manageItem',
+          element:<AdminRoute> <ManageItems></ManageItems></AdminRoute>
+        },
+        {
+          path: 'updateItem/:id',
+          element:<AdminRoute> <UpdateItem></UpdateItem></AdminRoute>,
+          loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
+
         }
       ]
     }

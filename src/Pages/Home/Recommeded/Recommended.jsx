@@ -3,7 +3,7 @@ import Card from './Card';
 
 const Recommended = () => {
     return (
-        <div className='grid grid-cols-1 md:grid-cols-3 mx-auto justify-center items-center'>
+        <div className='grid grid-cols-1 mx-auto md:grid-cols-3  justify-center items-center'>
 
             <Card></Card>
             <Card></Card>

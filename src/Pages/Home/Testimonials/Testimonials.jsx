@@ -28,11 +28,14 @@ const Testimonials = () => {
     useEffect(() => {
         fetch('http://localhost:5000/reviews')
             .then(res => res.json())
-            .then(data => setreviews(data))
+            .then(data => {
+           
+                setreviews(data)
+            })
 
     }, [])
 
-
+   
 
     return (
         <div>
@@ -43,7 +46,7 @@ const Testimonials = () => {
 
                 ></SectionTitle>
             </section>
-            <section className=' '>
+            <section >
                 <Swiper
                     cssMode={true}
                     navigation={true}
@@ -53,28 +56,30 @@ const Testimonials = () => {
                     modules={[Navigation, Pagination, Mousewheel, Keyboard]}
                     className="mySwiper"
                 >
+                    
+                    <div >
 
-                    <div className=''>
-                    {
-                        reviews.map(review => <SwiperSlide Key={review._id}>
-                            <div className='flex flex-col items-center justify-center mx-24 my-16'>
-                                <Rating
-                                    style={{ maxWidth: 180 }}
-                                    value={review.rating}
-                                    readOnly
-                                />
-                                <img style={{height: '100px', width: '100px'}} src={comma} alt="" />
-                                <p className='py-4'>{review.details}</p>
-                                <h3 className='text-2xl text-orange-400'>{review.name}</h3>
-                            </div>
+                        {
+                            reviews.map((review, idx) => <SwiperSlide key={review._id}>
+                                <div className='flex flex-col items-center justify-center mx-24 my-16'>
+                                    <Rating
+                                    Key={idx}
+                                        style={{ maxWidth: 180 }}
+                                        value={review.rating}
+                                        readOnly
+                                    />
+                                    <img style={{ height: '100px', width: '100px' }} src={comma} alt="" />
+                                    <p className='py-4'>{review.details}</p>
+                                    <h3 className='text-2xl text-orange-400'>{review.name}</h3>
+                                </div>
 
 
 
-                        </SwiperSlide>)
-                    }
+                            </SwiperSlide>)
+                        }
+
                     </div>
 
-                   
                 </Swiper>
             </section>
         </div>

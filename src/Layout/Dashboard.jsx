@@ -22,39 +22,39 @@ const Dashboard = () => {
                 <ul className="hidden lg:flex menu p-4">
                     {
                         isAdmin ? <>
-                         <li>
-                        <NavLink to="/dashboard/adminHome">
-                            <FaHome></FaHome>
-                           Admin Home
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dashboard/addItems">
-                            <FaUtensils></FaUtensils>
-                           Add Items
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dashboard/manageItem">
-                        <FaList></FaList>
-                          
-                           Manage Items
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dashboard/manageBookings">
-                            <FaBook></FaBook>
-                            Manage Bookings 
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dashboard/allUsers">
-                        <MdGroups2 />
-                           All Users
-                        </NavLink>
-                    </li>
-                    
-                    
+                            <li>
+                                <NavLink to="/dashboard/adminHome">
+                                    <FaHome></FaHome>
+                                    Admin Home
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/addItems">
+                                    <FaUtensils></FaUtensils>
+                                    Add Items
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/manageItem">
+                                    <FaList></FaList>
+
+                                    Manage Items
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/manageBookings">
+                                    <FaBook></FaBook>
+                                    Manage Bookings
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/allUsers">
+                                    <MdGroups2 />
+                                    All Users
+                                </NavLink>
+                            </li>
+
+
                         </>
                             :
                             <>
@@ -65,13 +65,13 @@ const Dashboard = () => {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/reservation">
+                                    <NavLink to="/dashboard/paymennthistory">
                                         <FaCalendar></FaCalendar>
                                         Reservation
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/reservation">
+                                    <NavLink to="/dashboard/paymennthistory">
                                         <IoWalletOutline />
 
                                         Prement History
@@ -133,7 +133,7 @@ const Dashboard = () => {
                 </ul>
 
             </div>
-            <div className="flex-1 mx-2 md:mx-8 my-8">
+            <div className="flex-1 mx-2 md:mx-8 ">
                 <Outlet></Outlet>
             </div>
 

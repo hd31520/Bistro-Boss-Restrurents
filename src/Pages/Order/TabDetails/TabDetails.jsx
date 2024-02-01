@@ -43,7 +43,7 @@ const TabDetails = ({ items }) => {
         arrayOfArrays.push(subarray);
     }
 
-    console.log(arrayOfArrays);
+    // console.log(arrayOfArrays);
 
 
 

@@ -49,7 +49,7 @@ const Category = () => {
                 className="mySwiper"
             >
                 {
-                   slides.map(item => <SwiperSlide>
+                   slides.map((item, idx) => <SwiperSlide key={idx}>
                     <div>
                         <img src={item.image} alt="" />
                         <h3 className='text-4xl uppercase text-center -mt-16 text-white'>{item.name}</h3>
